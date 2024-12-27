@@ -1,6 +1,6 @@
 name: documentation
 
-on: [push, pull_request, workflow_dispatch]
+on: [push]
 
 permissions:
   contents: write
@@ -14,15 +14,19 @@ jobs:
       - name: Install dependencies
         run: |
           pip install sphinx sphinx_rtd_theme breathe cmake==3.25.2
+      - name: Install Ninja
+        run: |
+          sudo apt update
+          sudo apt install -y ninja-build doxygen
       - name: Sphinx build
         run: |
           cmake --preset doc
           cmake --build --preset doc
-      # - name: Deploy to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-      #   with:
-      #     publish_branch: gh-pages
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: _build/
-      #     force_orphan: true
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        with:
+          publish_branch: gh_pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: out/build/doc/docs/sphinx/
+          force_orphan: true
