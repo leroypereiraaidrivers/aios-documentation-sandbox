@@ -5,14 +5,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+project ("CatCutifier")
 
-project(Documentation)
-if (MSVC)
-    # warning level 4
-    add_compile_options(/W4)
-else()
-    # additional warnings
-    add_compile_options(-fPIC)# -Wall -Wextra -Wpedantic)
-endif()
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
 
-add_subdirectory(src/)
+add_subdirectory(CatCutifier/)
+add_subdirectory(docs/)
+
