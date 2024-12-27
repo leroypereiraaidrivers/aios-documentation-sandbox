@@ -17,7 +17,7 @@ jobs:
       - name: Install Ninja
         run: |
           sudo apt update
-          sudo apt install -y ninja-build
+          sudo apt install -y ninja-build doxygen
       - name: Sphinx build
         run: |
           cmake --preset doc
