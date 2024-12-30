@@ -38,14 +38,14 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: out/build/doc/docs/sphinx/
+          publish-dir: './out/build/doc/docs/sphinx/'
           production-branch: feature/testing_self_hosted_runners
           production-deploy: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ github.event.pull_request.title }})
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+          overwrites-pull-request-comment: false
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
