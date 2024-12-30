@@ -39,8 +39,7 @@ jobs:
         uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './out/build/doc/docs/sphinx/'
-          production-branch: feature/testing_self_hosted_runners
-          production-deploy: true
+          production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: ${{ github.event.pull_request.title }})
           enable-pull-request-comment: false
