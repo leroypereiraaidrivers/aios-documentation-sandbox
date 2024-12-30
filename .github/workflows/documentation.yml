@@ -14,15 +14,18 @@ jobs:
       - name: Install dependencies
         run: |
           pip install exhale sphinx sphinx_rtd_theme breathe cmake==3.25.2 --break-system-packages
+
       - name: Install Ninja
         run: |
           sudo apt update
           sudo apt install -y ninja-build doxygen
+
       - name: Sphinx build
         run: |
           export PATH="$HOME/.local/bin:$PATH"
           cmake --preset doc
           cmake --build --preset doc
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
@@ -31,3 +34,19 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: out/build/doc/docs/sphinx/
           force_orphan: true
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: out/build/doc/docs/sphinx/
+          production-branch: feature/testing_self_hosted_runners
+          production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: ${{ github.event.pull_request.title }})
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
