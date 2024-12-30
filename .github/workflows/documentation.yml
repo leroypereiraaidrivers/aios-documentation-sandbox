@@ -7,19 +7,20 @@ permissions:
 
 jobs:
   docs:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
       - name: Install dependencies
         run: |
-          pip install sphinx sphinx_rtd_theme breathe cmake==3.25.2
+          pip install exhale sphinx sphinx_rtd_theme breathe cmake==3.25.2 --break-system-packages
       - name: Install Ninja
         run: |
           sudo apt update
           sudo apt install -y ninja-build doxygen
       - name: Sphinx build
         run: |
+          export PATH="$HOME/.local/bin:$PATH"
           cmake --preset doc
           cmake --build --preset doc
       - name: Deploy to GitHub Pages
