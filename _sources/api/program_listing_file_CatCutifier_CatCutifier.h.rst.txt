@@ -1,0 +1,17 @@
+
+.. _program_listing_file_CatCutifier_CatCutifier.h:
+
+Program Listing for File CatCutifier.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_CatCutifier_CatCutifier.h>` (``CatCutifier/CatCutifier.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #pragma once
+   
+   struct cat {
+     void make_cute();
+   };
