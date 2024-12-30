@@ -8,9 +8,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 project ("CatCutifier")
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
-
-add_subdirectory(CatCutifier/)
-
+if(NOT BUILD_DOCUMENTATION)
+  add_subdirectory(CatCutifier/)
+endif()
 if(BUILD_DOCUMENTATION)
   add_subdirectory(docs/)
 endif()

@@ -5,7 +5,7 @@
 */
 struct cat {
   /**
-    Make this cat look super cute
+    Make this cat look super cute and fluffy
   */
   void make_cute();
 };

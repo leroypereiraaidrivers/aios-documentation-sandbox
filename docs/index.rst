@@ -6,8 +6,11 @@
 Docs
 ====
 
-.. doxygenstruct:: cat
-   :members:
+.. toctree::
+   :maxdepth: 2
+
+   about
+   api/library_root
 
 
 
