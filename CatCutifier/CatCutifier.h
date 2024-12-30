@@ -1,7 +1,7 @@
 #pragma once
 
 /**
-  A fluffy feline that is cute
+  A fluffy feline that is super cute
 */
 struct cat {
   /**
