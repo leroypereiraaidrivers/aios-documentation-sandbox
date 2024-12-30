@@ -20,6 +20,7 @@ jobs:
           sudo apt install -y ninja-build doxygen
       - name: Sphinx build
         run: |
+          export PATH="$HOME/.local/bin:$PATH"
           cmake --preset doc
           cmake --build --preset doc
       - name: Deploy to GitHub Pages
